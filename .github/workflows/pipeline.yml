@@ -1,0 +1,22 @@
+name: DevSecOps Pipeline
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: echo "Add tests here"
+
+      - name: Security audit
+        run: npm audit --audit-level=high
+
+      - name: Build Docker image
+        run: docker build -t otp-api .
